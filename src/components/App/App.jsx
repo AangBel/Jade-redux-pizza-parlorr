@@ -9,6 +9,8 @@ import PizzaList from "../PizzaList/PizzaList";
 function App() {
   const dispatch = useDispatch();
   const pizzaList = useSelector((store) => store.pizzaReducer);
+  console.log(pizzaList);
+  
 
   // get Pizza data from server on load
   useEffect(() => {
@@ -41,7 +43,7 @@ function App() {
         <h1 className="App-title">Prime Pizza</h1>
       </header>
 
-      <img src="images/pizza_photo.png" />
+      
       <p>Pizza is great.</p>
       <PizzaList fetchPizza={fetchPizza} />
     </div>

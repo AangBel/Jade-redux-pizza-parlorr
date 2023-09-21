@@ -17,7 +17,7 @@ function PizzaList({ fetchPizza }) {
               <PizzaListItem
                 key={pizza.id}
                 fetchPizza={fetchPizza}
-               pizza = {pizza}
+                pizza = {pizza}
               />
             );
           })}
@@ -29,4 +29,3 @@ function PizzaList({ fetchPizza }) {
 
 export default PizzaList;
 
-// ("name", "description", "price", "image_path")

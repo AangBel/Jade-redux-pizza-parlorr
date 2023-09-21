@@ -12,7 +12,7 @@ function PizzaListItem({ fetchPizza, pizza }) {
       url: `/api/pizza/${pizza.id}`,
     })
       .then((response) => {
-        refreshPizza();
+        fetchPizza();
       })
       .catch((error) => {
         console.log("error on delete: ", error);
@@ -20,15 +20,21 @@ function PizzaListItem({ fetchPizza, pizza }) {
   };
 
   return (
-    <tr>
-      <td>{pizza.name}</td>
+    <div className="menuItem">
+      <img 
+      className="picture"
+      src={pizza.image_path}
+      alt = {pizza.name}
+      />  
+      <td className="pizzaName">{pizza.name}</td>
       <td>{pizza.description}</td>
-      <td>{pizza.price}</td>     
-      <td>{pizza.image_path}</td>      
+      <td>{pizza.price}</td>   
       <td>
         <button onClick={deletePizza}>REMOVE</button>
       </td>
-    </tr>
+
+  
+    </div>
   );
 }
 
