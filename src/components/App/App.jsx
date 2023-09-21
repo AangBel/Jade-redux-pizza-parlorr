@@ -8,9 +8,14 @@ import PizzaList from "../PizzaList/PizzaList";
 
 function App() {
   const dispatch = useDispatch();
+  // TODO use added to order and set added to order 
+  // const {description, id, image_path, name, price} = menuItem;
+
+  const [addedToOrder, setAddedToOrder]= useState(false);
+
   const pizzaList = useSelector((store) => store.pizzaReducer);
-  console.log(pizzaList);
-  
+  // console.log(pizzaList);
+
 
   // get Pizza data from server on load
   useEffect(() => {
@@ -25,17 +30,28 @@ function App() {
     })
       .then((response) => {
         // response.data is the array of artists
-        console.log(response.data);
+        console.log('this is response.data:', response.data);
         // TODO - update this to dispatch to Redux
         dispatch({
           type: "GET_PIZZA",
           payload: response.data,
+          // payload: menuItem
         });
       })
       .catch((error) => {
         console.log("error on GET", error);
       });
   };
+
+  const removePizzaFromOrder = () => {
+  
+    setAddedToOrder(!addedToOrder);
+
+    dispatch({
+      type: "REMOVE_PIZZA",
+    // <payload:id></payload:id>
+    })
+  }
 
   return (
     <div className="App">

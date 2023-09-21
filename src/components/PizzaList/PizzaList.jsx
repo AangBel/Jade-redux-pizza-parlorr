@@ -5,10 +5,12 @@ import PizzaListItem from "../PizzaListItem/PizzaListItem";
 
 function PizzaList({ fetchPizza }) {
   // let [artists, setArtists] = useState([]);
-    console.log()
+
   const pizzaList= useSelector((store) => store.pizzaReducer);
 
   return (
+    <>
+    
     <div>
       <table>
         <tbody>
@@ -24,6 +26,7 @@ function PizzaList({ fetchPizza }) {
         </tbody>
       </table>
     </div>
+    </>
   );
 }
 
