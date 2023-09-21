@@ -21,19 +21,11 @@ function PizzaListItem({ fetchPizza, pizza }) {
 
   return (
     <div className="menuItem">
-      <img 
-      className="picture"
-      src={pizza.image_path}
-      alt = {pizza.name}
-      />  
-      <td className="pizzaName">{pizza.name}</td>
-      <td>{pizza.description}</td>
-      <td>{pizza.price}</td>   
-      <td>
-        <button onClick={deletePizza}>REMOVE</button>
-      </td>
-
-  
+      <img className="picture" src={pizza.image_path} alt={pizza.name} />
+      <p className="pizzaName">{pizza.name}</p>
+      <p>{pizza.description}</p>
+      <p className="pizzaPrice">{pizza.price}</p>
+      <button onClick={deletePizza}>REMOVE</button>
     </div>
   );
 }
