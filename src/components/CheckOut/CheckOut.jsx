@@ -11,7 +11,7 @@ function Checkout() {
 
   let totalCost = 0;
   for (let item of orderList) {
-    totalCost += Number(orderList.price);
+    totalCost += Number(item.price);
     console.log("total cost:", totalCost);
   }
 
@@ -56,8 +56,12 @@ function Checkout() {
           </tr>
         </thead>
         <tbody>
-          {orderList.map((items, i) => (
-            <tr key={i}>{/* <PizzaList pizza={pizza} /> */}</tr>
+          {orderList.map((item, i) => (
+            <tr key={i}>
+                <td>{item.name}</td>
+                <td>${item.price.toFixed(2)}</td>
+
+                </tr>
           ))}
         </tbody>
       </table>
