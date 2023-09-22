@@ -4,10 +4,10 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import PizzaList from "../PizzaList/PizzaList";
 // import PizzaListItem from "../PizzaListItem/PizzaListItem";
-// import Checkout from "../CheckOut/CheckOut";
+import Checkout from "../CheckOut/CheckOut";
 import Header from "../Header/Header";
 
-// import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, Switch} from 'react-router-dom';
 // import CustomerForm from "../CustomerInfo/CustomerInfo";
 
 
@@ -43,7 +43,32 @@ function App() {
 
 
   return (
-<>
+<Router>
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Prime Pizza</h1>
+        </header>
+      </div>
+
+      <Switch>
+        <Route path="/" exact>
+          <div>
+            <p>Pizza is great.</p>
+            <PizzaList />
+            <Link to="/checkout">Next</Link>
+          </div>
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
+        </Route>
+      </Switch>
+    </Router>
+  );
+}
+
+
+
+/* <>
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Prime Pizza</h1>
@@ -59,9 +84,7 @@ function App() {
     <div>
       <button>Next</button>
     </div>
-    </>
-  );
-}
+    </> */
 
 export default App;
 
