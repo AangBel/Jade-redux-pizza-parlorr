@@ -2,53 +2,86 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import App from "../App/App";
 
+// TODO- do both a delete and add button due to possible next steps if i get to the stretch goals 
+function PizzaListItem({ fetchPizza, pizza,  menuItem}) {
 
-function PizzaListItem({ fetchPizza, pizza, removePizzaFromOrder , menuItem}) {
   const [addedToOrder, setAddedToOrder] = useState(false);
-
+  const orderList = useSelector((store) => store.orderList);
+  const dispatch = useDispatch();
   const {description, id, image_path, name, price} = pizza;
-  console.log('this is pizza', pizza);
 
   // console.log('this is pizza', pizza);
-  const dispatch = useDispatch();
+  // console.log('this is remove pizza from order', removePizzaFromOrder);
 
-  // const deletePizza = () => {
-  //   dispatch({
-  //     method: "DELETE",
-  //     url: `/api/pizza/${pizza.id}`,
-  //   })
-  //     .then((response) => {
-  //       fetchPizza();
-  //     })
-  //     .catch((error) => {
-  //       console.log("error on delete: ", error);
-  //     });
-  // };
-
-  // const deletePizza = () => {
-  //   dispatch({
-  //     type:"DELETE_PIZZA",
-  //     payload: 
-  //   })
+  // const removePizzaFromOrder = (state = [], action) => {
+  //   if (action.type === `REMOVE_PIZZA`) {
+  //     // this will replace the book list, payload is array of all books
+  //     console.log('this is action.payload', action.payload);
+  //     return  action.payload 
+  //   }
+  //   return state;
   // }
 
-  const toggleButton = (pizza) => {
-    setAddedToOrder(!addedToOrder);
-  };
+
+    function buttonClicked(addedToOrder){
+      if(addedToOrder){
+        console.log('in button clicked' );
+        setAddedToOrder(!addedToOrder);
+      }else {
+        dispatch({
+          type: "GET_ORDER",
+          payload: [
+            ...orderList,
+            {
+              name: pizza.name,
+              description: pizza.description, 
+              price:pizza.price,
+              image_path:pizza.image_path,
+              quantity: 1, 
+              id: pizza.id
+            },
+          ],
+        });
+        setAddedToOrder(!addedToOrder);
+        console.log('this is the order list', orderList);
+      }
+    }
 
 
   return (
+    <>
+    
     <div className="menuItem">
       <img className="picture" src={pizza.image_path} alt={pizza.name} />
       <p className="pizzaName">{pizza.name}</p>
       <p>{pizza.description}</p>
       <p className="pizzaPrice">{pizza.price}</p>
-      <button onClick={toggleButton}>REMOVE</button>
+
+      <p>
+        {addedToOrder ? (
+          <button
+            className="AddRemove-button"
+            onClick={() => buttonClicked(addedToOrder)}
+          >
+            Remove
+          </button>
+        ) : (
+          <button
+            className="AddRemove-button"
+            onClick={() => buttonClicked(addedToOrder)}
+          >
+            Add
+          </button>
+          )}
+          </p>
     </div>
+    
+    </>
   );
 }
 
 export default PizzaListItem;
+  

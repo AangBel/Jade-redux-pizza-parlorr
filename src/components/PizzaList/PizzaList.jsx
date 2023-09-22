@@ -2,18 +2,20 @@ import React from "react";
 // import { useState } from "react";
 import { useSelector } from "react-redux";
 import PizzaListItem from "../PizzaListItem/PizzaListItem";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function PizzaList({ fetchPizza }) {
-  // let [artists, setArtists] = useState([]);
+const history = useHistory();
+const pizzaList = useSelector((store) => store.pizzaReducer);
 
-  const pizzaList= useSelector((store) => store.pizzaReducer);
+  function handleSubmit() {
+    history.push('/form')
+  }
 
   return (
     <>
     
     <div>
-      <table>
-        <tbody>
           {pizzaList.map((pizza) => {
             return (
               <PizzaListItem
@@ -23,8 +25,9 @@ function PizzaList({ fetchPizza }) {
               />
             );
           })}
-        </tbody>
-      </table>
+        <button className="NextPizzaList" onClick={handleSubmit}>
+        Next
+        </button>
     </div>
     </>
   );
