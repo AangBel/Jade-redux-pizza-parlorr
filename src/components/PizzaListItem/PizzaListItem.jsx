@@ -8,10 +8,19 @@ import App from "../App/App";
 // TODO- do both a delete and add button due to possible next steps if i get to the stretch goals 
 function PizzaListItem({ fetchPizza, pizza,  menuItem}) {
 
-  const [addedToOrder, setAddedToOrder] = useState(false);
+  const [addedToOrder, setAddedToOrder] = useState(
+      useSelector((store) => 
+      store.orderList.some((item) => item.name === pizza.name)
+      )
+    );
   const orderList = useSelector((store) => store.orderList);
+  const initialAddedToOrder = orderList.some((item) => item.name === pizza.name);
+
+
   const dispatch = useDispatch();
   const {description, id, image_path, name, price} = pizza;
+
+
 
   // console.log('this is pizza', pizza);
   // console.log('this is remove pizza from order', removePizzaFromOrder);
@@ -26,6 +35,21 @@ function PizzaListItem({ fetchPizza, pizza,  menuItem}) {
   // }
 
 
+    // function buttonClicked(addedToOrder){
+    //   if(addedToOrder){
+    //     console.log('in button clicked' );
+    //     setAddedToOrder(!addedToOrder);
+    //   }else {
+    //     dispatch({
+    //       type: "GET_ORDER",
+    //       payload: pizza
+
+    //     });
+    //     setAddedToOrder(!addedToOrder);
+    //     console.log('this is the order list', orderList);
+    //   }
+    // }
+    
     function buttonClicked(addedToOrder){
       if(addedToOrder){
         console.log('in button clicked' );
@@ -33,15 +57,41 @@ function PizzaListItem({ fetchPizza, pizza,  menuItem}) {
       }else {
         dispatch({
           type: "GET_ORDER",
-          payload: pizza
+          payload: [
+                  ...orderList, 
+                  {
+                    name:pizza.name,
+                    price: pizza.price
 
+                  },
+                ],
         });
         setAddedToOrder(!addedToOrder);
         console.log('this is the order list', orderList);
       }
     }
 
-
+    // function buttonClicked() {
+    //   const isPizzaInOrder = orderList.some((item) => item.name === pizza.name);
+    //   if (!isPizzaInOrder) {
+    //     dispatch({
+    //       type: "REMOVE_PIZZA",
+    //       payload:pizza.name,
+    //     });
+    //   }else{
+    //     dispatch({
+    //       type: "GET_ORDER",
+    //       payload: {
+    //         name: pizza.name,
+    //         quantity: 1,
+    //         price: pizza.price,
+    //       },
+    //     });
+    //   }
+    //   console.log('this is the orderlist', orderList);
+    //   // Toggle the addedToOrder state
+    //   setAddedToOrder(!addedToOrder);
+    // }
   return (
     <>
     

@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 function PizzaList({ fetchPizza }) {
 // const history = useHistory();
 const pizzaList = useSelector((store) => store.pizzaReducer);
+
+
 // console.log('smokie', pizzaList)
   // function handleSubmit() {
   //   history.push('/form')

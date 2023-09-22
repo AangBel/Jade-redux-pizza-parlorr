@@ -6,6 +6,7 @@ import PizzaList from "../PizzaList/PizzaList";
 // import PizzaListItem from "../PizzaListItem/PizzaListItem";
 // import Checkout from "../CheckOut/CheckOut";
 import Header from "../Header/Header";
+
 // import { HashRouter as Router, Route, Link } from 'react-router-dom';
 // import CustomerForm from "../CustomerInfo/CustomerInfo";
 
@@ -19,6 +20,7 @@ function App() {
   const [addedToOrder, setAddedToOrder] = useState(false);
 
   const pizzaList = useSelector((store) => store.pizzaReducer);
+  // const orderList = useSelector((store) => store.pizzasInCart);
   // console.log(pizzaList);
 
   useEffect(() => {

@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 
 
 const pizzaReducer = (state = [], action) => {
+
+
   console.log('action.payload', action.payload);
 
     if(action.type === 'GET_PIZZA'){
@@ -16,8 +18,10 @@ const pizzaReducer = (state = [], action) => {
     return state;
   }
 
-  const pizzasInCart = (state = [], action) => {
-    console.log('action.payload', action.payload);
+  const orderList = (state = [], action) => {
+
+    console.log('action.payload.name', action.payload);
+
     
       if(action.type === 'GET_ORDER'){
         return [...state, action.payload];
@@ -25,10 +29,18 @@ const pizzaReducer = (state = [], action) => {
       return state;
     }
 
+    const formData = (state = [], action) => {
+      if (action.type === `GET_FORM`) {
+        return  action.payload
+      }
+      return state;
+    };
 
   const storeInstance = createStore(
     combineReducers({
       pizzaReducer,
+      orderList,
+      formData
     }),
     applyMiddleware(logger),
   );
