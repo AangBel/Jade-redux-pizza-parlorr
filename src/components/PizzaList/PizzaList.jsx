@@ -5,12 +5,12 @@ import PizzaListItem from "../PizzaListItem/PizzaListItem";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function PizzaList({ fetchPizza }) {
-const history = useHistory();
+// const history = useHistory();
 const pizzaList = useSelector((store) => store.pizzaReducer);
-
-  function handleSubmit() {
-    history.push('/form')
-  }
+// console.log('smokie', pizzaList)
+  // function handleSubmit() {
+  //   history.push('/form')
+  // }
 
   return (
     <>
@@ -25,9 +25,8 @@ const pizzaList = useSelector((store) => store.pizzaReducer);
               />
             );
           })}
-        <button className="NextPizzaList" onClick={handleSubmit}>
-        Next
-        </button>
+        {/* <button className="NextPizzaList" onClick={handleSubmit}> */}
+      
     </div>
     </>
   );

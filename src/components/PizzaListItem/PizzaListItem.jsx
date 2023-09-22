@@ -33,17 +33,8 @@ function PizzaListItem({ fetchPizza, pizza,  menuItem}) {
       }else {
         dispatch({
           type: "GET_ORDER",
-          payload: [
-            ...orderList,
-            {
-              name: pizza.name,
-              description: pizza.description, 
-              price:pizza.price,
-              image_path:pizza.image_path,
-              quantity: 1, 
-              id: pizza.id
-            },
-          ],
+          payload: pizza
+
         });
         setAddedToOrder(!addedToOrder);
         console.log('this is the order list', orderList);
@@ -55,6 +46,7 @@ function PizzaListItem({ fetchPizza, pizza,  menuItem}) {
     <>
     
     <div className="menuItem">
+  
       <img className="picture" src={pizza.image_path} alt={pizza.name} />
       <p className="pizzaName">{pizza.name}</p>
       <p>{pizza.description}</p>
